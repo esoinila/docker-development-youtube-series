@@ -19,13 +19,3 @@ jobs:
     - name: docker build python
       run: |
         docker build ./python -t aimvector/python:1.0.0
-
-    - name: docker build golang
-      run: |
-        docker build ./golang -t aimvector/golang:1.0.0
-
-    
-
-        
-    
-    
