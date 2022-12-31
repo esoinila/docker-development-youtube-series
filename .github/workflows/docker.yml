@@ -3,17 +3,22 @@ name: Docker Series Builds
 on: [push]
 
 jobs:
+
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
   build:    
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Login to Docker Hub
-      uses: docker/login-action@v2
-      with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}   
-        
+            
     - name: docker build csharp
       run: |
         docker build ./c# -t aimvector/csharp:1.0.0
